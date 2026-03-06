@@ -10,319 +10,309 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #2d6a2d;
-      --green-light: #3d8c3d;
-      --green-pale: #f0f7f0;
-      --accent: #5cb85c;
-      --dark: #0f0f0f;
-      --gray: #6b7280;
-      --gray-light: #f4f4f4;
-      --border: #e5e5e5;
-      --white: #ffffff;
+      --black:   #0c0c0c;
+      --black2:  #141414;
+      --white:   #ffffff;
+      --offwhite:#f8f6f2;
+      --sand:    #f0ece4;
+      --green:   #1e5c1e;
+      --green2:  #2d7a2d;
+      --lime:    #7db83a;
+      --gray:    #888;
+      --border:  #e0dbd2;
+      --ink:     #1a1a1a;
     }
 
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
 
-    /* ── NAV ── */
+    /* ─── NAV ─── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      height: 70px; display: flex; align-items: center;
+      padding: 0 clamp(1.5rem,5vw,4rem);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5rem; height: 72px;
-    }
-    .logo {
-      font-size: 1.35rem; font-weight: 800;
-      color: var(--dark); text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-    .logo span { color: var(--green); }
-    nav ul { list-style: none; display: flex; gap: 2.5rem; }
-    nav ul a { color: var(--gray); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-    nav ul a:hover { color: var(--dark); }
-    .nav-btn {
-      background: var(--green); color: white;
-      padding: 0.6rem 1.4rem; border-radius: 6px;
-      font-size: 0.85rem; font-weight: 600;
-      text-decoration: none; transition: background 0.2s;
-    }
-    .nav-btn:hover { background: var(--green-light); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
-      padding-top: 72px;
-    }
-    .hero-left {
-      padding: 6rem 5rem 5rem;
-      display: flex; flex-direction: column; justify-content: center;
-      border-right: 1px solid var(--border);
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--green-pale); border: 1px solid #c8e6c8;
-      color: var(--green); font-size: 0.75rem; font-weight: 600;
-      padding: 0.35rem 0.85rem; border-radius: 100px;
-      width: fit-content; margin-bottom: 2rem;
-      animation: fadeUp 0.6s ease both;
-    }
-    .hero-eyebrow::before { content: '●'; font-size: 0.5rem; }
-    .hero h1 {
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
-      font-weight: 800; line-height: 1.08;
-      letter-spacing: -2px; color: var(--dark);
-      animation: fadeUp 0.6s 0.1s ease both;
-    }
-    .hero h1 em { font-style: normal; color: var(--green); }
-    .hero-sub {
-      font-size: 1.05rem; color: var(--gray);
-      line-height: 1.75; max-width: 440px;
-      margin-top: 1.5rem;
-      animation: fadeUp 0.6s 0.2s ease both;
-    }
-    .hero-ctas {
-      display: flex; gap: 1rem; margin-top: 2.5rem;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
-    .cta-primary {
-      background: var(--green); color: white;
-      padding: 0.9rem 2rem; border-radius: 8px;
-      font-weight: 700; font-size: 0.9rem;
-      text-decoration: none; transition: background 0.2s, transform 0.2s;
-    }
-    .cta-primary:hover { background: var(--green-light); transform: translateY(-1px); }
-    .cta-secondary {
-      background: transparent; color: var(--dark);
-      padding: 0.9rem 2rem; border-radius: 8px;
-      font-weight: 600; font-size: 0.9rem;
-      text-decoration: none; border: 1.5px solid var(--border);
-      transition: border-color 0.2s;
-    }
-    .cta-secondary:hover { border-color: #aaa; }
-    .hero-proof {
-      display: flex; gap: 2.5rem; margin-top: 3.5rem;
-      padding-top: 2rem; border-top: 1px solid var(--border);
-      animation: fadeUp 0.6s 0.4s ease both;
-    }
-    .proof-num { font-size: 2rem; font-weight: 800; letter-spacing: -1px; color: var(--dark); }
-    .proof-num span { color: var(--green); }
-    .proof-lbl { font-size: 0.78rem; color: var(--gray); margin-top: 0.15rem; }
-
-    /* Hero right — court illustration */
-    .hero-right {
-      background: var(--gray-light);
-      position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-right-inner {
-      position: relative; width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-court-wrap {
-      width: 85%; max-width: 480px;
-      animation: fadeUp 0.8s 0.2s ease both;
-    }
-
-    /* ── CLIENTS STRIP ── */
-    .clients {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 1.4rem 5rem;
-      display: flex; align-items: center; gap: 3rem;
-      background: var(--white);
-      overflow: hidden;
-    }
-    .clients-label { font-size: 0.75rem; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
-    .clients-logos { display: flex; gap: 3rem; align-items: center; overflow: hidden; }
-    .client-logo { font-size: 0.85rem; font-weight: 700; color: #bbb; letter-spacing: -0.3px; white-space: nowrap; }
-
-    /* ── SECTION COMMON ── */
-    .section { padding: 7rem 5rem; }
-    .section.gray { background: var(--gray-light); }
-    .section.dark { background: var(--dark); color: white; }
-    .s-eyebrow {
-      font-size: 0.72rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 2px;
-      color: var(--green); margin-bottom: 0.8rem;
-    }
-    .s-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800; letter-spacing: -1.5px;
-      line-height: 1.05; max-width: 520px;
-    }
-    .s-sub {
-      font-size: 1rem; color: var(--gray);
-      line-height: 1.7; max-width: 480px; margin-top: 0.8rem;
-    }
-    .section.dark .s-sub { color: #888; }
-    .section.dark .s-title { color: white; }
-
-    /* ── SERVICES ── */
-    .srv-layout {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 5rem; align-items: start; margin-top: 5rem;
-    }
-    .srv-list { display: flex; flex-direction: column; gap: 0; }
-    .srv-item {
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 48px 1fr auto;
-      gap: 1.2rem; align-items: start;
-      cursor: pointer; transition: padding-left 0.2s;
-    }
-    .srv-item:first-child { border-top: 1px solid var(--border); }
-    .srv-item:hover { padding-left: 0.5rem; }
-    .srv-item-num { font-size: 0.75rem; font-weight: 700; color: var(--green); padding-top: 0.2rem; }
-    .srv-item-name { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .srv-item-desc { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
-    .srv-arrow { color: var(--border); font-size: 1.2rem; padding-top: 0.15rem; transition: color 0.2s, transform 0.2s; }
-    .srv-item:hover .srv-arrow { color: var(--green); transform: translateX(4px); }
-    .srv-visual {
-      background: var(--dark); border-radius: 16px;
-      overflow: hidden; position: sticky; top: 96px;
-      height: 420px;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    /* ── PROCESS ── */
-    .proc-grid {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 2px; margin-top: 4rem;
-      background: var(--border); border-radius: 12px; overflow: hidden;
-    }
-    .proc-card {
-      background: white; padding: 2.5rem 2rem;
-      transition: background 0.25s;
-    }
-    .proc-card:hover { background: var(--green-pale); }
-    .proc-num {
-      font-size: 2.5rem; font-weight: 800;
-      color: var(--border); letter-spacing: -1px;
-      line-height: 1; margin-bottom: 1.5rem;
-    }
-    .proc-card:hover .proc-num { color: var(--green); }
-    .proc-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .proc-desc { font-size: 0.83rem; color: var(--gray); line-height: 1.65; }
-
-    /* ── PORTFOLIO ── */
-    .port-intro {
-      display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;
-    }
-    .port-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
       gap: 1.5rem;
     }
-    .port-card {
-      border-radius: 12px; overflow: hidden;
-      background: var(--gray-light);
+    .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; color: var(--ink); text-decoration: none; flex-shrink: 0; }
+    .logo span { color: var(--green); }
+    .nav-links { list-style: none; display: flex; gap: 2rem; margin-left: auto; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color .2s; white-space: nowrap; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { background: var(--green); color: white; padding: .6rem 1.4rem; border-radius: 6px; font-size: .82rem; font-weight: 700; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background .2s; }
+    .nav-cta:hover { background: var(--green2); }
+    .ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: auto; padding: 4px; }
+    .ham span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all .3s; }
+    .mob-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; z-index: 299; background: white; border-bottom: 1px solid var(--border); padding: 1.5rem clamp(1.5rem,5vw,4rem); flex-direction: column; gap: 0; }
+    .mob-menu.open { display: flex; }
+    .mob-menu a { color: var(--ink); text-decoration: none; font-size: .95rem; font-weight: 500; padding: .85rem 0; border-bottom: 1px solid var(--border); }
+    .mob-menu .mcta { background: var(--green); color: white; text-align: center; padding: .9rem; border-radius: 8px; font-weight: 700; margin-top: .75rem; border-bottom: none; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100svh;
+      padding-top: 70px;
+      background: var(--black);
+      color: white;
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-green-blob {
+      position: absolute; top: -20%; right: -10%; width: 60%; height: 80%;
+      background: radial-gradient(ellipse, rgba(30,92,30,.25) 0%, transparent 65%);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      flex: 1; display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(3rem,8vw,6rem) clamp(1.5rem,5vw,4rem);
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-size: .72rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--lime);
+      margin-bottom: 1.5rem;
+      animation: fadeUp .7s ease both;
+    }
+    .hero-eyebrow::before { content: ''; width: 24px; height: 1.5px; background: var(--lime); }
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      font-weight: 900; letter-spacing: -3px; line-height: .95;
+      color: white;
+      animation: fadeUp .7s .1s ease both;
+    }
+    .hero h1 .green-word { color: var(--lime); }
+    .hero-sub {
+      font-size: clamp(.9rem, 1.8vw, 1.1rem);
+      color: rgba(255,255,255,.55);
+      line-height: 1.7; max-width: 500px;
+      margin-top: 1.75rem;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2.5rem;
+      animation: fadeUp .7s .3s ease both;
+    }
+    .btn-lime { background: var(--lime); color: white; padding: .9rem 2rem; border-radius: 8px; font-weight: 700; font-size: .9rem; text-decoration: none; transition: opacity .2s, transform .2s; display: inline-block; }
+    .btn-lime:hover { opacity: .9; transform: translateY(-2px); }
+    .btn-ghost-white { background: transparent; color: white; padding: .9rem 2rem; border-radius: 8px; font-weight: 600; font-size: .9rem; text-decoration: none; border: 1.5px solid rgba(255,255,255,.2); transition: border-color .2s; display: inline-block; }
+    .btn-ghost-white:hover { border-color: rgba(255,255,255,.5); }
+
+    /* Hero stats bar */
+    .hero-stats-bar {
+      position: relative; z-index: 1;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: grid; grid-template-columns: repeat(4,1fr);
+      background: rgba(255,255,255,.03);
+    }
+    .hstat {
+      padding: clamp(1.25rem,3vw,2rem) clamp(1.5rem,3vw,2.5rem);
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+    .hstat:last-child { border-right: none; }
+    .hstat-n { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 900; letter-spacing: -2px; color: white; line-height: 1; }
+    .hstat-n .accent { color: var(--lime); }
+    .hstat-l { font-size: .75rem; color: rgba(255,255,255,.4); margin-top: .3rem; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ─── WHY ─── */
+    .why {
+      background: var(--offwhite);
+      padding: clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem);
+    }
+    .why-header { margin-bottom: clamp(2.5rem,5vw,4rem); }
+    .sec-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--green); margin-bottom: .7rem; }
+    .sec-h { font-size: clamp(1.8rem,4vw,3rem); font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; }
+    .why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: clamp(1rem,2vw,1.5rem); }
+    .why-card {
+      background: white; border-radius: 14px;
+      padding: clamp(1.5rem,3vw,2.25rem);
       border: 1px solid var(--border);
-      transition: transform 0.25s, box-shadow 0.25s;
-      cursor: pointer;
+      transition: box-shadow .25s, transform .25s;
     }
-    .port-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
-    .port-card.large { grid-column: span 2; }
-    .port-img { height: 220px; position: relative; overflow: hidden; }
-    .port-card.large .port-img { height: 280px; }
-    .port-img svg { width: 100%; height: 100%; }
-    .port-body { padding: 1.25rem 1.5rem 1.5rem; }
-    .port-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green); margin-bottom: 0.3rem; }
-    .port-name { font-size: 1.05rem; font-weight: 700; }
-    .port-loc { font-size: 0.82rem; color: var(--gray); margin-top: 0.2rem; }
-    .port-meta { display: flex; gap: 1rem; margin-top: 0.8rem; }
-    .port-tag-pill {
-      font-size: 0.72rem; font-weight: 500; color: var(--gray);
-      background: var(--border); padding: 0.25rem 0.7rem;
-      border-radius: 100px;
-    }
+    .why-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.08); transform: translateY(-3px); }
+    .why-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .why-title { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .why-desc { font-size: .85rem; color: var(--gray); line-height: 1.7; }
 
-    /* ── CONTACT ── */
-    .contact-wrap {
-      display: grid; grid-template-columns: 1fr 1.2fr;
-      gap: 6rem; align-items: start;
+    /* ─── SERVICES ─── */
+    .services { padding: clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem); background: white; }
+    .srv-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: clamp(1rem,2vw,1.5rem); margin-top: clamp(2.5rem,4vw,3.5rem); }
+    .srv-card {
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; transition: transform .25s, box-shadow .25s;
     }
-    .contact-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800; letter-spacing: -1.5px;
-      line-height: 1.05; color: white;
+    .srv-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+    .srv-card-top {
+      background: var(--offwhite); padding: clamp(1.5rem,3vw,2.5rem);
+      display: flex; align-items: flex-start; gap: 1rem;
     }
-    .contact-title span { color: var(--accent); }
-    .contact-desc { color: #888; font-size: 0.95rem; line-height: 1.7; margin-top: 1rem; }
-    .contact-info { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0; }
-    .c-row {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1rem 0; border-bottom: 1px solid #222;
-    }
-    .c-row:first-child { border-top: 1px solid #222; }
-    .c-icon { font-size: 1rem; width: 20px; text-align: center; }
-    .c-lbl { font-size: 0.72rem; color: #555; text-transform: uppercase; letter-spacing: 1px; }
-    .c-val { font-size: 0.9rem; color: #ddd; font-weight: 500; margin-top: 0.1rem; }
-    /* form */
-    .cform { background: white; border-radius: 16px; padding: 2.5rem; }
-    .cform-title { font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 1.5rem; }
-    .cform-grid { display: flex; flex-direction: column; gap: 1rem; }
-    .cform-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .fg { display: flex; flex-direction: column; gap: 0.3rem; }
-    .fg label { font-size: 0.72rem; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
-    .fg input, .fg select, .fg textarea {
-      border: 1.5px solid var(--border); background: white; color: var(--dark);
-      padding: 0.75rem 0.9rem; border-radius: 8px;
-      font-family: 'Inter', sans-serif; font-size: 0.875rem;
-      outline: none; transition: border-color 0.2s;
-    }
-    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--green); }
-    .fg textarea { resize: vertical; min-height: 100px; }
-    .form-btn {
-      width: 100%; background: var(--green); color: white;
-      border: none; padding: 1rem; border-radius: 8px;
-      font-family: 'Inter', sans-serif; font-weight: 700;
-      font-size: 0.9rem; cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 0.5rem;
-    }
-    .form-btn:hover { background: var(--green-light); }
-    .form-ok {
-      display: none; text-align: center; padding: 2rem;
-      color: var(--green); font-weight: 600; font-size: 0.95rem;
-    }
+    .srv-num { font-size: 3rem; font-weight: 900; color: var(--border); letter-spacing: -2px; line-height: 1; flex-shrink: 0; transition: color .25s; }
+    .srv-card:hover .srv-num { color: var(--green); }
+    .srv-card-body { padding: clamp(1.25rem,2.5vw,2rem); }
+    .srv-name { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+    .srv-desc { font-size: .85rem; color: var(--gray); line-height: 1.7; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #080808; border-top: 1px solid #1a1a1a;
-      padding: 2rem 5rem;
+    /* ─── COUNTERS ─── */
+    .counters {
+      background: var(--green);
+      padding: clamp(3.5rem,7vw,6rem) clamp(1.5rem,5vw,4rem);
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 1px; background-color: rgba(255,255,255,.15);
+    }
+    .counters-inner { display: contents; }
+    .counter-item {
+      background: var(--green);
+      padding: clamp(2rem,4vw,3rem) clamp(1.5rem,3vw,2rem);
+      text-align: center;
+    }
+    .counter-n { font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 900; color: white; letter-spacing: -2px; line-height: 1; }
+    .counter-n sup { font-size: 40%; color: rgba(255,255,255,.7); }
+    .counter-l { font-size: .8rem; color: rgba(255,255,255,.6); margin-top: .5rem; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    /* ─── PROCESS ─── */
+    .process { padding: clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem); background: var(--offwhite); }
+    .proc-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: clamp(1rem,2vw,1.5rem); margin-top: clamp(2.5rem,4vw,3.5rem); position: relative; }
+    .proc-step { position: relative; }
+    .proc-step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; font-weight: 800;
+      margin-bottom: 1.25rem; flex-shrink: 0;
+    }
+    .proc-step-title { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .proc-step-desc { font-size: .84rem; color: var(--gray); line-height: 1.65; }
+
+    /* ─── PORTFOLIO ─── */
+    .portfolio { padding: clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem); background: white; }
+    .port-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: clamp(2rem,4vw,3rem); }
+    .port-grid { display: grid; grid-template-columns: repeat(3,1fr); grid-auto-rows: 260px; gap: clamp(.75rem,1.5vw,1.25rem); }
+    .port-item { border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; background: var(--offwhite); border: 1px solid var(--border); }
+    .port-item.tall { grid-row: span 2; }
+    .port-item.wide { grid-column: span 2; }
+    .port-court { position: absolute; inset: 0; }
+    .port-court svg { width: 100%; height: 100%; }
+    .port-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,.9) 0%, transparent 55%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.25rem 1.5rem;
+      transition: background .3s;
+    }
+    .port-item:hover .port-overlay { background: linear-gradient(to top, rgba(10,10,10,.95) 0%, rgba(10,10,10,.1) 100%); }
+    .port-cat { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--lime); margin-bottom: .2rem; }
+    .port-name { font-size: 1rem; font-weight: 700; color: white; line-height: 1.2; }
+    .port-loc { font-size: .78rem; color: rgba(255,255,255,.55); margin-top: .2rem; }
+    .port-arr { position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px; background: var(--lime); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: .85rem; opacity: 0; transform: scale(.7); transition: opacity .25s, transform .25s; }
+    .port-item:hover .port-arr { opacity: 1; transform: scale(1); }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { background: var(--black); padding: clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem); }
+    .testimonials .sec-label { color: var(--lime); }
+    .testimonials .sec-h { color: white; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(1rem,2vw,1.5rem); margin-top: clamp(2.5rem,4vw,3.5rem); }
+    .testi-card {
+      background: var(--black2); border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px; padding: clamp(1.5rem,3vw,2rem);
+      transition: border-color .25s;
+    }
+    .testi-card:hover { border-color: rgba(125,184,58,.3); }
+    .testi-stars { color: var(--lime); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testi-text { font-size: .88rem; color: rgba(255,255,255,.65); line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; }
+    .testi-author { font-size: .82rem; font-weight: 700; color: white; }
+    .testi-role { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: .15rem; }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      background: var(--offwhite); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: clamp(3rem,6vw,5rem) clamp(1.5rem,5vw,4rem);
       display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
+      flex-wrap: wrap; gap: 2rem;
     }
-    footer .logo { color: white; }
-    footer p { font-size: 0.8rem; color: #444; }
+    .cta-banner-text { max-width: 580px; }
+    .cta-banner h2 { font-size: clamp(1.6rem,4vw,2.5rem); font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+    .cta-banner p { font-size: .95rem; color: var(--gray); margin-top: .6rem; line-height: 1.65; }
+    .btn-green { background: var(--green); color: white; padding: .95rem 2.2rem; border-radius: 8px; font-weight: 700; font-size: .9rem; text-decoration: none; transition: background .2s; display: inline-block; }
+    .btn-green:hover { background: var(--green2); }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* ─── CONTACT ─── */
+    .contact { background: var(--black); padding: clamp(4rem,8vw,7rem) clamp(1.5rem,5vw,4rem); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(2.5rem,6vw,5rem); align-items: start; }
+    .contact .sec-label { color: var(--lime); }
+    .ct-title { font-size: clamp(1.8rem,4vw,3rem); font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; color: white; margin-bottom: .75rem; }
+    .ct-title span { color: var(--lime); }
+    .ct-sub { font-size: .92rem; color: rgba(255,255,255,.4); line-height: 1.7; margin-bottom: 2rem; }
+    .ct-info { display: flex; flex-direction: column; }
+    .ct-row { display: flex; align-items: center; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .ct-row:first-child { border-top: 1px solid rgba(255,255,255,.07); }
+    .ct-icon { width: 36px; height: 36px; background: rgba(125,184,58,.1); border: 1px solid rgba(125,184,58,.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
+    .ct-lbl { font-size: .68rem; color: rgba(255,255,255,.3); text-transform: uppercase; letter-spacing: 1px; }
+    .ct-val { font-size: .88rem; color: rgba(255,255,255,.8); font-weight: 500; margin-top: .1rem; }
+    /* form */
+    .cf-wrap { background: white; border-radius: 16px; padding: clamp(1.5rem,3vw,2.5rem); }
+    .cf-title { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 1.5rem; }
+    .cf { display: flex; flex-direction: column; gap: .85rem; }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+    .fg { display: flex; flex-direction: column; gap: .3rem; }
+    .fg label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); }
+    .fg input, .fg select, .fg textarea { background: var(--offwhite); border: 1.5px solid var(--border); color: var(--ink); padding: .75rem .9rem; border-radius: 8px; font-family: 'Inter',sans-serif; font-size: .875rem; outline: none; transition: border-color .2s; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--green); background: white; }
+    .fg textarea { resize: vertical; min-height: 90px; }
+    .cf-btn { width: 100%; background: var(--green); color: white; border: none; padding: .95rem; border-radius: 8px; font-family: 'Inter',sans-serif; font-weight: 700; font-size: .9rem; cursor: pointer; transition: background .2s; margin-top: .25rem; }
+    .cf-btn:hover { background: var(--green2); }
+    .cf-ok { display: none; text-align: center; padding: 2rem; color: var(--green); font-weight: 600; }
+
+    /* ─── FOOTER ─── */
+    footer { background: #080808; border-top: 1px solid rgba(255,255,255,.06); padding: 2rem clamp(1.5rem,5vw,4rem); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    footer .logo { color: rgba(255,255,255,.7); }
+    footer .logo span { color: var(--lime); }
+    footer p { font-size: .78rem; color: #333; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+    .reveal { opacity:0; transform:translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.vis { opacity:1; transform:translateY(0); }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .ham { display: flex; }
+      .hero-stats-bar { grid-template-columns: repeat(2,1fr); }
+      .hstat:nth-child(2) { border-right: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .srv-grid { grid-template-columns: 1fr; }
+      .counters { grid-template-columns: repeat(2,1fr); }
+      .counter-item:nth-child(2) { border-right: none; }
+      .proc-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .port-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+      .port-item.wide { grid-column: span 1; }
+      .port-item.tall { grid-row: span 1; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .cf-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
     }
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.vis { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      nav { padding: 0 2rem; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
-      .hero-left { padding: 4rem 2rem; }
-      .section { padding: 5rem 2rem; }
-      .clients { padding: 1.4rem 2rem; }
-      .srv-layout { grid-template-columns: 1fr; gap: 3rem; }
-      .srv-visual { display: none; }
-      .proc-grid { grid-template-columns: 1fr 1fr; }
-      .port-grid { grid-template-columns: 1fr; }
-      .port-card.large { grid-column: span 1; }
-      .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
-      footer { flex-direction: column; text-align: center; padding: 2rem; }
-      nav ul { display: none; }
+    @media (max-width: 540px) {
+      .proc-steps { grid-template-columns: 1fr; }
+      .port-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+      .hero-btns { flex-direction: column; }
+      .btn-lime, .btn-ghost-white { text-align: center; }
+      .counters { grid-template-columns: 1fr 1fr; }
+      .cta-banner { flex-direction: column; }
     }
   </style>
 </head>
@@ -331,404 +321,363 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">Court<span>ify</span></a>
-  <ul>
+  <ul class="nav-links">
+    <li><a href="#why">Γιατί εμάς</a></li>
     <li><a href="#services">Υπηρεσίες</a></li>
-    <li><a href="#process">Διαδικασία</a></li>
     <li><a href="#portfolio">Έργα</a></li>
     <li><a href="#contact">Επικοινωνία</a></li>
   </ul>
-  <a href="#contact" class="nav-btn">Ζητήστε Προσφορά</a>
+  <a href="#contact" class="nav-cta">Ζητήστε Προσφορά</a>
+  <div class="ham" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a href="#why" onclick="toggleMenu()">Γιατί εμάς</a>
+  <a href="#services" onclick="toggleMenu()">Υπηρεσίες</a>
+  <a href="#portfolio" onclick="toggleMenu()">Έργα</a>
+  <a href="#contact" onclick="toggleMenu()">Επικοινωνία</a>
+  <a href="#contact" class="mcta" onclick="toggleMenu()">Ζητήστε Προσφορά →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-green-blob"></div>
+  <div class="hero-content">
     <div class="hero-eyebrow">Κατασκευαστές Γηπέδων Padel</div>
-    <h1>Κατασκευάζουμε<br>γήπεδα <em>padel</em><br>που διαρκούν.</h1>
-    <p class="hero-sub">Από τον σχεδιασμό ως την παράδοση — επαγγελματικές εγκαταστάσεις padel για clubs, ξενοδοχεία και δήμους σε όλη την Ελλάδα.</p>
-    <div class="hero-ctas">
-      <a href="#contact" class="cta-primary">Ζητήστε Προσφορά</a>
-      <a href="#portfolio" class="cta-secondary">Δείτε τα έργα μας</a>
-    </div>
-    <div class="hero-proof">
-      <div>
-        <div class="proof-num">80<span>+</span></div>
-        <div class="proof-lbl">Γήπεδα κατασκευασμένα</div>
-      </div>
-      <div>
-        <div class="proof-num">6<span>+</span></div>
-        <div class="proof-lbl">Χρόνια εμπειρίας</div>
-      </div>
-      <div>
-        <div class="proof-num">100<span>%</span></div>
-        <div class="proof-lbl">Εγγύηση αποτελέσματος</div>
-      </div>
+    <h1>Χτίζουμε το<br>γήπεδο padel<br>της <span class="green-word">εποχής μας.</span></h1>
+    <p class="hero-sub">Από τον σχεδιασμό ως την παράδοση — επαγγελματικές εγκαταστάσεις padel για clubs, ξενοδοχεία, δήμους και ιδιώτες σε όλη την Ελλάδα.</p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-lime">Δείτε τα έργα μας</a>
+      <a href="#contact" class="btn-ghost-white">Ζητήστε Προσφορά</a>
     </div>
   </div>
+  <div class="hero-stats-bar">
+    <div class="hstat"><div class="hstat-n">80<span class="accent">+</span></div><div class="hstat-l">Γήπεδα κατασκευασμένα</div></div>
+    <div class="hstat"><div class="hstat-n">6<span class="accent">+</span></div><div class="hstat-l">Χρόνια εμπειρίας</div></div>
+    <div class="hstat"><div class="hstat-n">15<span class="accent">+</span></div><div class="hstat-l">Πόλεις στην Ελλάδα</div></div>
+    <div class="hstat"><div class="hstat-n">100<span class="accent">%</span></div><div class="hstat-l">Εγγύηση αποτελέσματος</div></div>
+  </div>
+</section>
 
-  <div class="hero-right">
-    <div class="hero-right-inner">
-      <!-- Large padel court top-view illustration -->
-      <div class="hero-court-wrap">
-        <svg viewBox="0 0 480 560" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="courtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#e8f5e9"/>
-              <stop offset="100%" stop-color="#c8e6c9"/>
-            </linearGradient>
-            <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-              <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="#000" flood-opacity="0.12"/>
-            </filter>
-          </defs>
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="why-header reveal">
+    <div class="sec-label">Γιατί Courtify</div>
+    <h2 class="sec-h">Η εμπειρία που<br>κάνει τη διαφορά.</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">🏗️</div>
+      <div class="why-title">Πλήρης Εσωτερική Παραγωγή</div>
+      <p class="why-desc">Σχεδιάζουμε και κατασκευάζουμε όλα τα στοιχεία του γηπέδου εσωτερικά — δομικός χάλυβας, γυάλινα πανέλα, τεχνητή χλόη FIP.</p>
+    </div>
+    <div class="why-card reveal reveal-d1">
+      <div class="why-icon">🌍</div>
+      <div class="why-title">Εμπειρία & Εμβέλεια</div>
+      <p class="why-desc">Έχουμε εγκαταστήσει γήπεδα σε όλη την Ελλάδα. Κάθε project αντιμετωπίζεται με προσαρμοσμένη προσέγγιση.</p>
+    </div>
+    <div class="why-card reveal reveal-d2">
+      <div class="why-icon">✅</div>
+      <div class="why-title">Πιστοποιημένα Υλικά</div>
+      <p class="why-desc">Χρησιμοποιούμε μόνο υλικά πιστοποιημένα από τη FIP (Διεθνής Ομοσπονδία Padel) για επαγγελματικό επίπεδο.</p>
+    </div>
+    <div class="why-card reveal reveal-d3">
+      <div class="why-icon">🔧</div>
+      <div class="why-title">After-Sales Υποστήριξη</div>
+      <p class="why-desc">Η σχέση μας δεν τελειώνει στην παράδοση. Παρέχουμε εγγύηση και τεχνική υποστήριξη για χρόνια μετά.</p>
+    </div>
+  </div>
+</section>
 
-          <!-- Court background -->
-          <rect x="20" y="20" width="440" height="520" rx="6" fill="url(#courtGrad)" filter="url(#shadow)"/>
-
-          <!-- Court surface lines - white -->
-          <!-- Outer boundary -->
-          <rect x="40" y="40" width="400" height="480" fill="none" stroke="white" stroke-width="3"/>
-          <!-- Service line -->
-          <line x1="40" y1="280" x2="440" y2="280" stroke="white" stroke-width="2.5"/>
-          <!-- Center service line -->
-          <line x1="240" y1="280" x2="240" y2="520" stroke="white" stroke-width="2"/>
-          <!-- Top service line -->
-          <line x1="40" y1="200" x2="440" y2="200" stroke="white" stroke-width="2"/>
-          <line x1="240" y1="40" x2="240" y2="200" stroke="white" stroke-width="2"/>
-
-          <!-- Net -->
-          <rect x="36" y="274" width="408" height="12" rx="2" fill="#2d6a2d" opacity="0.9"/>
-          <!-- Net posts -->
-          <circle cx="38" cy="280" r="7" fill="#1a1a1a"/>
-          <circle cx="442" cy="280" r="7" fill="#1a1a1a"/>
-
-          <!-- Glass walls - subtle indication -->
-          <rect x="20" y="20" width="8" height="520" rx="2" fill="#2d6a2d" opacity="0.15"/>
-          <rect x="452" y="20" width="8" height="520" rx="2" fill="#2d6a2d" opacity="0.15"/>
-          <rect x="20" y="20" width="440" height="8" rx="2" fill="#2d6a2d" opacity="0.15"/>
-          <rect x="20" y="532" width="440" height="8" rx="2" fill="#2d6a2d" opacity="0.15"/>
-
-          <!-- Courtify branding watermark -->
-          <text x="240" y="175" font-family="Inter,sans-serif" font-size="13" font-weight="700"
-            fill="#2d6a2d" opacity="0.3" text-anchor="middle" letter-spacing="6">COURTIFY</text>
-          <text x="240" y="420" font-family="Inter,sans-serif" font-size="13" font-weight="700"
-            fill="#2d6a2d" opacity="0.3" text-anchor="middle" letter-spacing="6">COURTIFY</text>
-
-          <!-- Ball -->
-          <circle cx="320" cy="160" r="11" fill="#2d6a2d" opacity="0.7"/>
-          <circle cx="320" cy="160" r="8" fill="#5cb85c"/>
-
-          <!-- Dimensions label -->
-          <line x1="460" y1="40" x2="460" y2="520" stroke="#2d6a2d" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-          <text x="472" y="285" font-family="Inter,sans-serif" font-size="10" fill="#2d6a2d" opacity="0.5" text-anchor="start">20m</text>
-          <line x1="40" y1="545" x2="440" y2="545" stroke="#2d6a2d" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
-          <text x="240" y="558" font-family="Inter,sans-serif" font-size="10" fill="#2d6a2d" opacity="0.5" text-anchor="middle">10m</text>
-        </svg>
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="reveal">
+    <div class="sec-label">Τι κατασκευάζουμε</div>
+    <h2 class="sec-h">Πλήρεις λύσεις<br>για κάθε χώρο.</h2>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card reveal">
+      <div class="srv-card-top">
+        <div class="srv-num">01</div>
+        <div>
+          <div class="srv-name">Κατασκευή Νέου Γηπέδου</div>
+          <div class="srv-desc">Νέα γήπεδα padel από μηδέν. Δομικός χάλυβας, γυάλινα πανέλα διεθνών προδιαγραφών και επαγγελματική τεχνητή χλόη.</div>
+        </div>
       </div>
-
-      <!-- Floating badge -->
-      <div style="position:absolute;bottom:3rem;right:3rem;background:white;border:1px solid var(--border);border-radius:12px;padding:1rem 1.3rem;box-shadow:0 4px 20px rgba(0,0,0,0.08);">
-        <div style="font-size:0.7rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.2rem;">Πιστοποιημένα υλικά</div>
-        <div style="font-size:0.88rem;font-weight:600;color:var(--dark);">FIP · WPT Approved</div>
+    </div>
+    <div class="srv-card reveal reveal-d1">
+      <div class="srv-card-top">
+        <div class="srv-num">02</div>
+        <div>
+          <div class="srv-name">Σχεδιασμός & Μελέτη</div>
+          <div class="srv-desc">Αρχιτεκτονική μελέτη, 3D απεικόνιση και πλήρης προσαρμογή στις ιδιαιτερότητες του χώρου σας.</div>
+        </div>
+      </div>
+    </div>
+    <div class="srv-card reveal">
+      <div class="srv-card-top">
+        <div class="srv-num">03</div>
+        <div>
+          <div class="srv-name">Φωτισμός LED</div>
+          <div class="srv-desc">Επαγγελματικά συστήματα LED υψηλής φωτεινότητας για νυχτερινό παιχνίδι, αγώνες και streaming.</div>
+        </div>
+      </div>
+    </div>
+    <div class="srv-card reveal reveal-d1">
+      <div class="srv-card-top">
+        <div class="srv-num">04</div>
+        <div>
+          <div class="srv-name">Service & Συντήρηση</div>
+          <div class="srv-desc">Τακτική συντήρηση, αντικατάσταση χλόης και τεχνική υποστήριξη για μέγιστη διάρκεια ζωής.</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CLIENTS STRIP -->
-<div class="clients reveal">
-  <div class="clients-label">Εμπιστεύονται</div>
-  <div class="clients-logos">
-    <div class="client-logo">Athens Sports Club</div>
-    <div class="client-logo">Regency Hotels</div>
-    <div class="client-logo">Δ. Μαρουσίου</div>
-    <div class="client-logo">Novapark</div>
-    <div class="client-logo">Ellinikon Club</div>
+<!-- COUNTERS -->
+<div class="counters reveal" id="counters">
+  <div class="counter-item">
+    <div class="counter-n" data-target="80">0<sup>+</sup></div>
+    <div class="counter-l">Γήπεδα κατασκευασμένα</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-n" data-target="6">0<sup>+</sup></div>
+    <div class="counter-l">Χρόνια εμπειρίας</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-n" data-target="15">0<sup>+</sup></div>
+    <div class="counter-l">Πόλεις Ελλάδα</div>
+  </div>
+  <div class="counter-item">
+    <div class="counter-n" data-target="100">0<sup>%</sup></div>
+    <div class="counter-l">Εγγύηση ποιότητας</div>
   </div>
 </div>
 
-<!-- SERVICES -->
-<section class="section" id="services">
-  <div class="srv-layout">
-    <div>
-      <div class="s-eyebrow reveal">Τι κατασκευάζουμε</div>
-      <h2 class="s-title reveal">Πλήρεις λύσεις<br>για κάθε χώρο.</h2>
-      <p class="s-sub reveal">Αναλαμβάνουμε κάθε στάδιο — από την πρώτη αξιολόγηση ως το τελικό γήπεδο.</p>
-      <div class="srv-list" style="margin-top:2.5rem;">
-        <div class="srv-item reveal">
-          <div class="srv-item-num">01</div>
-          <div>
-            <div class="srv-item-name">Κατασκευή Γηπέδου Padel</div>
-            <div class="srv-item-desc">Νέα γήπεδα από μηδέν. Δομικός χάλυβας, γυάλινα πανέλα και επαγγελματική τεχνητή χλόη διεθνών προδιαγραφών.</div>
-          </div>
-          <div class="srv-arrow">→</div>
-        </div>
-        <div class="srv-item reveal">
-          <div class="srv-item-num">02</div>
-          <div>
-            <div class="srv-item-name">Σχεδιασμός & Μελέτη</div>
-            <div class="srv-item-desc">Αρχιτεκτονική μελέτη, 3D απεικόνιση και προσαρμογή σε κάθε είδους χώρο — εσωτερικό ή εξωτερικό.</div>
-          </div>
-          <div class="srv-arrow">→</div>
-        </div>
-        <div class="srv-item reveal">
-          <div class="srv-item-num">03</div>
-          <div>
-            <div class="srv-item-name">Φωτισμός LED</div>
-            <div class="srv-item-desc">Επαγγελματικά συστήματα LED υψηλής φωτεινότητας για νυχτερινό παιχνίδι και live streaming.</div>
-          </div>
-          <div class="srv-arrow">→</div>
-        </div>
-        <div class="srv-item reveal">
-          <div class="srv-item-num">04</div>
-          <div>
-            <div class="srv-item-name">Service & Συντήρηση</div>
-            <div class="srv-item-desc">Τακτική συντήρηση, αντικατάσταση χλόης και τεχνική υποστήριξη για μεγάλη διάρκεια ζωής.</div>
-          </div>
-          <div class="srv-arrow">→</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sticky visual -->
-    <div class="srv-visual">
-      <svg viewBox="0 0 380 420" xmlns="http://www.w3.org/2000/svg" style="width:85%;max-width:340px;">
-        <defs>
-          <linearGradient id="svGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#1a3a1a"/>
-            <stop offset="100%" stop-color="#0a1a0a"/>
-          </linearGradient>
-          <radialGradient id="svGlow" cx="50%" cy="50%" r="60%">
-            <stop offset="0%" stop-color="#3d8c3d" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="#3d8c3d" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="svGlowF"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <rect width="380" height="420" rx="12" fill="url(#svGrad)"/>
-        <rect width="380" height="420" rx="12" fill="url(#svGlow)"/>
-        <!-- Court lines -->
-        <rect x="20" y="20" width="340" height="380" fill="none" stroke="#5cb85c" stroke-width="1.5" opacity="0.4"/>
-        <line x1="20" y1="210" x2="360" y2="210" stroke="#5cb85c" stroke-width="1.5" opacity="0.4"/>
-        <line x1="190" y1="210" x2="190" y2="400" stroke="#5cb85c" stroke-width="1" opacity="0.3"/>
-        <line x1="20" y1="150" x2="360" y2="150" stroke="#5cb85c" stroke-width="1" opacity="0.25"/>
-        <line x1="190" y1="20" x2="190" y2="150" stroke="#5cb85c" stroke-width="1" opacity="0.25"/>
-        <!-- Net -->
-        <rect x="16" y="205" width="348" height="10" rx="2" fill="#5cb85c" opacity="0.5"/>
-        <circle cx="18" cy="210" r="5" fill="#5cb85c" opacity="0.7"/>
-        <circle cx="362" cy="210" r="5" fill="#5cb85c" opacity="0.7"/>
-        <!-- Ball -->
-        <circle cx="120" cy="130" r="10" fill="#5cb85c" filter="url(#svGlowF)" opacity="0.9"/>
-        <!-- Courtify text -->
-        <text x="190" y="105" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-          fill="#5cb85c" opacity="0.2" text-anchor="middle" letter-spacing="5">COURTIFY</text>
-        <text x="190" y="330" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-          fill="#5cb85c" opacity="0.2" text-anchor="middle" letter-spacing="5">COURTIFY</text>
-      </svg>
-    </div>
-  </div>
-</section>
-
 <!-- PROCESS -->
-<section class="section gray" id="process">
-  <div class="s-eyebrow reveal">Πώς δουλεύουμε</div>
-  <h2 class="s-title reveal">Από την ιδέα<br>στο τελικό γήπεδο.</h2>
-  <div class="proc-grid reveal">
-    <div class="proc-card">
-      <div class="proc-num">01</div>
-      <div class="proc-title">Επικοινωνία & Αξιολόγηση</div>
-      <p class="proc-desc">Μελετάμε τον χώρο, ακούμε τις ανάγκες σας και σας δίνουμε προσφορά χωρίς κόστος και δέσμευση.</p>
+<section class="process">
+  <div class="reveal">
+    <div class="sec-label">Πώς δουλεύουμε</div>
+    <h2 class="sec-h">Από την ιδέα<br>στο έτοιμο γήπεδο.</h2>
+  </div>
+  <div class="proc-steps">
+    <div class="proc-step reveal">
+      <div class="proc-step-num">01</div>
+      <div class="proc-step-title">Επικοινωνία & Αξιολόγηση</div>
+      <p class="proc-step-desc">Αξιολογούμε τον χώρο και τις ανάγκες σας. Δωρεάν επίσκεψη και προσφορά.</p>
     </div>
-    <div class="proc-card">
-      <div class="proc-num">02</div>
-      <div class="proc-title">Σχεδιασμός & Μελέτη</div>
-      <p class="proc-desc">Πλήρης αρχιτεκτονική μελέτη και 3D απεικόνιση — εγκρίνετε το αποτέλεσμα πριν ξεκινήσουμε.</p>
+    <div class="proc-step reveal reveal-d1">
+      <div class="proc-step-num">02</div>
+      <div class="proc-step-title">Σχεδιασμός & Μελέτη</div>
+      <p class="proc-step-desc">Πλήρης μελέτη με 3D απεικόνιση. Εγκρίνετε κάθε λεπτομέρεια πριν ξεκινήσουμε.</p>
     </div>
-    <div class="proc-card">
-      <div class="proc-num">03</div>
-      <div class="proc-title">Κατασκευή</div>
-      <p class="proc-desc">Εξειδικευμένα συνεργεία με πιστοποιημένα υλικά. Παράδοση τυπικού γηπέδου σε 2–4 εβδομάδες.</p>
+    <div class="proc-step reveal reveal-d2">
+      <div class="proc-step-num">03</div>
+      <div class="proc-step-title">Κατασκευή</div>
+      <p class="proc-step-desc">Εξειδικευμένα συνεργεία, πιστοποιημένα υλικά. Παράδοση σε 2–4 εβδομάδες.</p>
     </div>
-    <div class="proc-card">
-      <div class="proc-num">04</div>
-      <div class="proc-title">Παράδοση & Υποστήριξη</div>
-      <p class="proc-desc">Παραδίδουμε έτοιμο με πλήρη εγγύηση και μακροχρόνια τεχνική υποστήριξη.</p>
+    <div class="proc-step reveal reveal-d3">
+      <div class="proc-step-num">04</div>
+      <div class="proc-step-title">Παράδοση & Υποστήριξη</div>
+      <p class="proc-step-desc">Παραδίδουμε έτοιμο με πλήρη εγγύηση και συνεχή after-sales υποστήριξη.</p>
     </div>
   </div>
 </section>
 
 <!-- PORTFOLIO -->
-<section class="section" id="portfolio">
-  <div class="port-intro reveal">
+<section class="portfolio" id="portfolio">
+  <div class="port-header reveal">
     <div>
-      <div class="s-eyebrow">Έργα μας</div>
-      <h2 class="s-title">80+ γήπεδα<br>σε όλη την Ελλάδα.</h2>
+      <div class="sec-label">Τα έργα μας</div>
+      <h2 class="sec-h">80+ γήπεδα<br>σε όλη την Ελλάδα.</h2>
     </div>
-    <a href="#contact" class="cta-secondary" style="align-self:flex-end">Δείτε όλα →</a>
+    <a href="#contact" class="btn-green">Όλα τα έργα</a>
   </div>
   <div class="port-grid reveal">
 
-    <div class="port-card large">
-      <div class="port-img">
-        <svg viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg">
-          <rect width="560" height="280" fill="#c8e6c9"/>
-          <rect x="15" y="15" width="530" height="250" fill="#a5d6a7"/>
-          <rect x="30" y="30" width="500" height="220" fill="none" stroke="white" stroke-width="2.5"/>
-          <line x1="30" y1="140" x2="530" y2="140" stroke="white" stroke-width="2.5"/>
-          <line x1="280" y1="140" x2="280" y2="250" stroke="white" stroke-width="1.5"/>
-          <line x1="30" y1="100" x2="530" y2="100" stroke="white" stroke-width="1.5"/>
-          <line x1="280" y1="30" x2="280" y2="100" stroke="white" stroke-width="1.5"/>
-          <rect x="26" y="135" width="508" height="10" rx="2" fill="#2d6a2d" opacity="0.7"/>
-          <circle cx="26" cy="140" r="6" fill="#1a3a1a"/>
-          <circle cx="534" cy="140" r="6" fill="#1a3a1a"/>
-          <circle cx="380" cy="75" r="10" fill="#2d6a2d" opacity="0.8"/>
-          <text x="280" y="80" font-family="Inter" font-size="14" font-weight="700" fill="white" opacity="0.4" text-anchor="middle" letter-spacing="8">ATHENS PADEL CLUB</text>
-          <text x="280" y="210" font-family="Inter" font-size="14" font-weight="700" fill="white" opacity="0.4" text-anchor="middle" letter-spacing="8">ATHENS PADEL CLUB</text>
+    <!-- Wide item -->
+    <div class="port-item wide">
+      <div class="port-court">
+        <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="560" height="260" fill="#1a3a1a"/>
+          <rect width="560" height="260" fill="url(#pg1)"/>
+          <defs>
+            <radialGradient id="pg1" cx="50%" cy="40%" r="70%">
+              <stop offset="0%" stop-color="#2a5c2a" stop-opacity=".5"/>
+              <stop offset="100%" stop-color="#0a1a0a" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect x="20" y="15" width="520" height="230" fill="none" stroke="#7db83a" stroke-width="2" opacity=".5"/>
+          <line x1="20" y1="130" x2="540" y2="130" stroke="#7db83a" stroke-width="2" opacity=".45"/>
+          <line x1="280" y1="130" x2="280" y2="245" stroke="#7db83a" stroke-width="1.5" opacity=".3"/>
+          <line x1="20" y1="90" x2="540" y2="90" stroke="#7db83a" stroke-width="1.5" opacity=".3"/>
+          <line x1="280" y1="15" x2="280" y2="90" stroke="#7db83a" stroke-width="1.5" opacity=".3"/>
+          <rect x="16" y="125" width="528" height="10" rx="2" fill="#1e5c1e" opacity=".8"/>
+          <circle cx="18" cy="130" r="6" fill="#0c2a0c"/>
+          <circle cx="542" cy="130" r="6" fill="#0c2a0c"/>
+          <circle cx="400" cy="60" r="9" fill="#7db83a" opacity=".85"/>
+          <text x="280" y="78" font-family="Inter" font-size="12" font-weight="700" fill="#7db83a" opacity=".2" text-anchor="middle" letter-spacing="8">ATHENS PADEL CLUB</text>
+          <text x="280" y="200" font-family="Inter" font-size="12" font-weight="700" fill="#7db83a" opacity=".2" text-anchor="middle" letter-spacing="8">ATHENS PADEL CLUB</text>
         </svg>
       </div>
-      <div class="port-body">
-        <div class="port-cat">Padel · 2 γήπεδα</div>
+      <div class="port-overlay">
+        <div class="port-cat">Padel · 2 Γήπεδα</div>
         <div class="port-name">Athens Padel Club</div>
-        <div class="port-loc">Κηφισιά, Αθήνα</div>
-        <div class="port-meta">
-          <span class="port-tag-pill">Εξωτερικό</span>
-          <span class="port-tag-pill">LED Φωτισμός</span>
-          <span class="port-tag-pill">2023</span>
-        </div>
+        <div class="port-loc">📍 Κηφισιά, Αθήνα · 2023</div>
       </div>
+      <div class="port-arr">→</div>
     </div>
 
-    <div class="port-card">
-      <div class="port-img">
-        <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="280" height="220" fill="#b2dfdb"/>
-          <rect x="10" y="10" width="260" height="200" fill="#80cbc4"/>
-          <rect x="20" y="20" width="240" height="180" fill="none" stroke="white" stroke-width="2.5"/>
-          <line x1="20" y1="110" x2="260" y2="110" stroke="white" stroke-width="2.5"/>
-          <line x1="140" y1="110" x2="140" y2="200" stroke="white" stroke-width="1.5"/>
-          <rect x="16" y="105" width="248" height="10" rx="2" fill="#00695c" opacity="0.7"/>
-          <circle cx="18" cy="110" r="5" fill="#004d40"/>
-          <circle cx="262" cy="110" r="5" fill="#004d40"/>
+    <!-- Tall item -->
+    <div class="port-item tall">
+      <div class="port-court">
+        <svg viewBox="0 0 260 520" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="260" height="520" fill="#0f1f0f"/>
+          <rect x="15" y="15" width="230" height="490" fill="none" stroke="#7db83a" stroke-width="2" opacity=".45"/>
+          <line x1="15" y1="260" x2="245" y2="260" stroke="#7db83a" stroke-width="2" opacity=".4"/>
+          <line x1="130" y1="260" x2="130" y2="505" stroke="#7db83a" stroke-width="1.5" opacity=".28"/>
+          <line x1="15" y1="190" x2="245" y2="190" stroke="#7db83a" stroke-width="1.5" opacity=".25"/>
+          <line x1="130" y1="15" x2="130" y2="190" stroke="#7db83a" stroke-width="1.5" opacity=".25"/>
+          <rect x="11" y="255" width="238" height="10" rx="2" fill="#1e5c1e" opacity=".7"/>
+          <circle cx="13" cy="260" r="5" fill="#0c2a0c"/>
+          <circle cx="247" cy="260" r="5" fill="#0c2a0c"/>
+          <circle cx="180" cy="120" r="8" fill="#7db83a" opacity=".8"/>
         </svg>
       </div>
-      <div class="port-body">
-        <div class="port-cat">Padel · 1 γήπεδο</div>
+      <div class="port-overlay">
+        <div class="port-cat">Padel · 1 Γήπεδο</div>
         <div class="port-name">Thessaloniki Sport</div>
-        <div class="port-loc">Καλαμαριά, Θεσσαλονίκη</div>
-        <div class="port-meta">
-          <span class="port-tag-pill">Εσωτερικό</span>
-          <span class="port-tag-pill">2024</span>
-        </div>
+        <div class="port-loc">📍 Καλαμαριά · 2024</div>
       </div>
+      <div class="port-arr">→</div>
     </div>
 
-    <div class="port-card">
-      <div class="port-img">
-        <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="280" height="220" fill="#dce8dc"/>
-          <rect x="10" y="10" width="260" height="200" fill="#c5d9c5"/>
-          <rect x="20" y="20" width="240" height="180" fill="none" stroke="white" stroke-width="2.5"/>
-          <line x1="20" y1="110" x2="260" y2="110" stroke="white" stroke-width="2.5"/>
-          <line x1="140" y1="110" x2="140" y2="200" stroke="white" stroke-width="1.5"/>
-          <rect x="16" y="105" width="248" height="10" rx="2" fill="#2d6a2d" opacity="0.6"/>
-          <circle cx="18" cy="110" r="5" fill="#1a3a1a"/>
-          <circle cx="262" cy="110" r="5" fill="#1a3a1a"/>
-          <circle cx="80" cy="60" r="8" fill="#2d6a2d" opacity="0.7"/>
+    <div class="port-item">
+      <div class="port-court">
+        <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="260" height="260" fill="#102010"/>
+          <rect x="12" y="12" width="236" height="236" fill="none" stroke="#7db83a" stroke-width="2" opacity=".4"/>
+          <line x1="12" y1="130" x2="248" y2="130" stroke="#7db83a" stroke-width="2" opacity=".38"/>
+          <line x1="130" y1="130" x2="130" y2="248" stroke="#7db83a" stroke-width="1.5" opacity=".25"/>
+          <rect x="8" y="125" width="244" height="10" rx="2" fill="#1e5c1e" opacity=".65"/>
+          <circle cx="10" cy="130" r="5" fill="#0c2a0c"/>
+          <circle cx="250" cy="130" r="5" fill="#0c2a0c"/>
         </svg>
       </div>
-      <div class="port-body">
-        <div class="port-cat">Padel · 1 γήπεδο</div>
+      <div class="port-overlay">
+        <div class="port-cat">Padel · 1 Γήπεδο</div>
         <div class="port-name">Crete Padel Resort</div>
-        <div class="port-loc">Ηράκλειο, Κρήτη</div>
-        <div class="port-meta">
-          <span class="port-tag-pill">Εξωτερικό</span>
-          <span class="port-tag-pill">2024</span>
-        </div>
+        <div class="port-loc">📍 Ηράκλειο · 2024</div>
       </div>
+      <div class="port-arr">→</div>
     </div>
 
-    <div class="port-card">
-      <div class="port-img">
-        <svg viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="280" height="220" fill="#e8f5e9"/>
-          <rect x="10" y="10" width="260" height="200" fill="#c8e6c9"/>
-          <rect x="20" y="20" width="240" height="180" fill="none" stroke="white" stroke-width="2.5"/>
-          <line x1="20" y1="110" x2="260" y2="110" stroke="white" stroke-width="2.5"/>
-          <rect x="16" y="105" width="248" height="10" rx="2" fill="#2d6a2d" opacity="0.65"/>
-          <circle cx="18" cy="110" r="5" fill="#1a3a1a"/>
-          <circle cx="262" cy="110" r="5" fill="#1a3a1a"/>
+    <div class="port-item">
+      <div class="port-court">
+        <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="260" height="260" fill="#0e1e0e"/>
+          <rect x="12" y="12" width="236" height="236" fill="none" stroke="#7db83a" stroke-width="2" opacity=".4"/>
+          <line x1="12" y1="130" x2="248" y2="130" stroke="#7db83a" stroke-width="2" opacity=".38"/>
+          <rect x="8" y="125" width="244" height="10" rx="2" fill="#1e5c1e" opacity=".65"/>
+          <circle cx="10" cy="130" r="5" fill="#0c2a0c"/>
+          <circle cx="250" cy="130" r="5" fill="#0c2a0c"/>
+          <circle cx="75" cy="75" r="8" fill="#7db83a" opacity=".7"/>
         </svg>
       </div>
-      <div class="port-body">
-        <div class="port-cat">Padel · 1 γήπεδο</div>
+      <div class="port-overlay">
+        <div class="port-cat">Padel · 1 Γήπεδο</div>
         <div class="port-name">Patra Padel Club</div>
-        <div class="port-loc">Πάτρα</div>
-        <div class="port-meta">
-          <span class="port-tag-pill">Εξωτερικό</span>
-          <span class="port-tag-pill">2023</span>
-        </div>
+        <div class="port-loc">📍 Πάτρα · 2023</div>
       </div>
+      <div class="port-arr">→</div>
     </div>
 
-    <div class="port-card large">
-      <div class="port-img">
-        <svg viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg">
-          <rect width="560" height="280" fill="#e3f2e3"/>
-          <rect x="15" y="15" width="250" height="250" fill="#c8e6c9"/>
-          <rect x="295" y="15" width="250" height="250" fill="#c8e6c9"/>
-          <rect x="25" y="25" width="230" height="230" fill="none" stroke="white" stroke-width="2.5"/>
-          <line x1="25" y1="140" x2="255" y2="140" stroke="white" stroke-width="2.5"/>
-          <rect x="21" y="135" width="238" height="10" rx="2" fill="#2d6a2d" opacity="0.65"/>
-          <rect x="305" y="25" width="230" height="230" fill="none" stroke="white" stroke-width="2.5"/>
-          <line x1="305" y1="140" x2="535" y2="140" stroke="white" stroke-width="2.5"/>
-          <rect x="301" y="135" width="238" height="10" rx="2" fill="#2d6a2d" opacity="0.65"/>
-          <circle cx="420" cy="75" r="9" fill="#2d6a2d" opacity="0.75"/>
+    <div class="port-item wide">
+      <div class="port-court">
+        <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect width="560" height="260" fill="#0d1d0d"/>
+          <rect x="15" y="15" width="255" height="230" fill="none" stroke="#7db83a" stroke-width="2" opacity=".4"/>
+          <rect x="290" y="15" width="255" height="230" fill="none" stroke="#7db83a" stroke-width="2" opacity=".4"/>
+          <line x1="15" y1="130" x2="270" y2="130" stroke="#7db83a" stroke-width="2" opacity=".38"/>
+          <line x1="290" y1="130" x2="545" y2="130" stroke="#7db83a" stroke-width="2" opacity=".38"/>
+          <line x1="142" y1="130" x2="142" y2="245" stroke="#7db83a" stroke-width="1.5" opacity=".25"/>
+          <line x1="417" y1="130" x2="417" y2="245" stroke="#7db83a" stroke-width="1.5" opacity=".25"/>
+          <rect x="11" y="125" width="263" height="10" rx="2" fill="#1e5c1e" opacity=".65"/>
+          <rect x="286" y="125" width="263" height="10" rx="2" fill="#1e5c1e" opacity=".65"/>
+          <circle cx="13" cy="130" r="5" fill="#0c2a0c"/><circle cx="272" cy="130" r="5" fill="#0c2a0c"/>
+          <circle cx="288" cy="130" r="5" fill="#0c2a0c"/><circle cx="547" cy="130" r="5" fill="#0c2a0c"/>
         </svg>
       </div>
-      <div class="port-body">
-        <div class="port-cat">Padel · 2 γήπεδα</div>
+      <div class="port-overlay">
+        <div class="port-cat">Padel · 2 Γήπεδα</div>
         <div class="port-name">Larissa Indoor Padel</div>
-        <div class="port-loc">Λάρισα</div>
-        <div class="port-meta">
-          <span class="port-tag-pill">Εσωτερικό</span>
-          <span class="port-tag-pill">LED Φωτισμός</span>
-          <span class="port-tag-pill">2022</span>
-        </div>
+        <div class="port-loc">📍 Λάρισα · 2022</div>
       </div>
+      <div class="port-arr">→</div>
     </div>
 
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="reveal">
+    <div class="sec-label">Τι λένε για εμάς</div>
+    <h2 class="sec-h">Μιλούν οι πελάτες μας.</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">«Η εμπειρία μας με την Courtify ήταν εξαιρετική. Επαγγελματισμός σε κάθε στάδιο — από τον σχεδιασμό ως την παράδοση. Το γήπεδο μας είναι ακριβώς αυτό που φανταζόμασταν.»</p>
+      <div class="testi-author">Νίκος Παπαδόπουλος</div>
+      <div class="testi-role">Ιδιοκτήτης Athens Padel Club</div>
+    </div>
+    <div class="testi-card reveal reveal-d1">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">«Δουλέψαμε μαζί για 2 γήπεδα padel στο ξενοδοχείο μας. Ποιότητα υλικών υψηλότατη και παράδοση εντός χρονοδιαγράμματος. Συνιστώ ανεπιφύλακτα.»</p>
+      <div class="testi-author">Μαρία Κωνσταντίνου</div>
+      <div class="testi-role">Διευθύντρια Regency Resort</div>
+    </div>
+    <div class="testi-card reveal reveal-d2">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">«Ως δήμος είχαμε υψηλές απαιτήσεις. Η Courtify τις κάλυψε όλες. Τα γήπεδά μας είναι πλέον από τα καλύτερα της χώρας και η τεχνική υποστήριξη είναι συνεχής.»</p>
+      <div class="testi-author">Γιώργης Αλεξίου</div>
+      <div class="testi-role">Αντιδήμαρχος Αθλητισμού</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner reveal">
+  <div class="cta-banner-text">
+    <h2>Έτοιμοι να ξεκινήσετε<br>το project σας;</h2>
+    <p>Επικοινωνήστε μαζί μας για δωρεάν αξιολόγηση χώρου και αναλυτική προσφορά — χωρίς καμία δέσμευση.</p>
+  </div>
+  <a href="#contact" class="btn-green">Ζητήστε Προσφορά →</a>
+</div>
+
 <!-- CONTACT -->
-<section class="section dark" id="contact">
-  <div class="contact-wrap">
+<section class="contact" id="contact">
+  <div class="contact-grid">
     <div>
-      <div class="s-eyebrow">Επικοινωνία</div>
-      <h2 class="contact-title">Ξεκινήστε<br>το <span>project</span><br>σας σήμερα.</h2>
-      <p class="contact-desc">Επικοινωνήστε μαζί μας για δωρεάν αξιολόγηση χώρου και αναλυτική προσφορά χωρίς καμία δέσμευση.</p>
-      <div class="contact-info">
-        <div class="c-row">
-          <div class="c-icon">📞</div>
-          <div><div class="c-lbl">Τηλέφωνο</div><div class="c-val">+30 210 000 0000</div></div>
-        </div>
-        <div class="c-row">
-          <div class="c-icon">✉️</div>
-          <div><div class="c-lbl">Email</div><div class="c-val">info@courtify.gr</div></div>
-        </div>
-        <div class="c-row">
-          <div class="c-icon">📍</div>
-          <div><div class="c-lbl">Έδρα</div><div class="c-val">Αθήνα, Ελλάδα</div></div>
-        </div>
-        <div class="c-row">
-          <div class="c-icon">🕐</div>
-          <div><div class="c-lbl">Ώρες</div><div class="c-val">Δευ–Παρ, 09:00–18:00</div></div>
-        </div>
+      <div class="sec-label">Επικοινωνία</div>
+      <h2 class="ct-title">Ξεκινήστε<br>το <span>project</span><br>σας σήμερα.</h2>
+      <p class="ct-sub">Δωρεάν αξιολόγηση χώρου και αναλυτική προσφορά χωρίς δέσμευση.</p>
+      <div class="ct-info">
+        <div class="ct-row"><div class="ct-icon">📞</div><div><div class="ct-lbl">Τηλέφωνο</div><div class="ct-val">+30 210 000 0000</div></div></div>
+        <div class="ct-row"><div class="ct-icon">✉️</div><div><div class="ct-lbl">Email</div><div class="ct-val">info@courtify.gr</div></div></div>
+        <div class="ct-row"><div class="ct-icon">📍</div><div><div class="ct-lbl">Έδρα</div><div class="ct-val">Αθήνα, Ελλάδα</div></div></div>
+        <div class="ct-row"><div class="ct-icon">🕐</div><div><div class="ct-lbl">Ώρες</div><div class="ct-val">Δευ–Παρ, 09:00–18:00</div></div></div>
       </div>
     </div>
-
-    <div class="cform reveal">
-      <div class="cform-title">Στείλτε μας το αίτημά σας</div>
-      <form class="cform-grid" id="mainForm">
-        <div class="cform-row">
+    <div class="cf-wrap reveal">
+      <div class="cf-title">Στείλτε μας το αίτημά σας</div>
+      <form class="cf" id="mainForm">
+        <div class="cf-row">
           <div class="fg"><label>Όνομα *</label><input type="text" placeholder="Το όνομά σας" required></div>
           <div class="fg"><label>Τηλέφωνο *</label><input type="tel" placeholder="+30 69xxxxxxxx" required></div>
         </div>
@@ -745,13 +694,10 @@
             <option>Άλλο</option>
           </select>
         </div>
-        <div class="fg"><label>Μήνυμα</label><textarea placeholder="Περιγράψτε το project σας — χώρος, αριθμός γηπέδων, χρονοδιάγραμμα..."></textarea></div>
-        <button type="button" class="form-btn" onclick="submitMain()">Αποστολή Αιτήματος →</button>
+        <div class="fg"><label>Μήνυμα</label><textarea placeholder="Χώρος, αριθμός γηπέδων, χρονοδιάγραμμα..."></textarea></div>
+        <button type="button" class="cf-btn" onclick="doSubmit()">Αποστολή Αιτήματος →</button>
       </form>
-      <div class="form-ok" id="formOk">
-        ✅ Το αίτημά σας στάλθηκε!<br>
-        <span style="font-weight:400;color:#888;font-size:0.85rem">Θα επικοινωνήσουμε εντός 24 ωρών.</span>
-      </div>
+      <div class="cf-ok" id="cfOk">✅ Το αίτημά σας στάλθηκε!<br><span style="font-weight:400;color:var(--gray);font-size:.83rem">Θα επικοινωνήσουμε εντός 24 ωρών.</span></div>
     </div>
   </div>
 </section>
@@ -759,19 +705,49 @@
 <!-- FOOTER -->
 <footer>
   <a href="#" class="logo">Court<span>ify</span></a>
-  <p>© 2025 Courtify — Κατασκευή Γηπέδων Padel στην Ελλάδα</p>
+  <p>© 2025 Courtify — Κατασκευή Γηπέδων Padel</p>
   <p>Made in Greece 🇬🇷</p>
 </footer>
 
 <script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobMenu').classList.toggle('open');
+  }
+
   // Scroll reveal
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-  }, { threshold: 0.07 });
+  }, { threshold: 0.06 });
   document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
 
+  // Animated counters
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.querySelector('sup') ? el.querySelector('sup').outerHTML : '';
+    const duration = 1800;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.innerHTML = Math.floor(current) + suffix;
+      if (current >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const countersEl = document.getElementById('counters');
+  if (countersEl) counterObs.observe(countersEl);
+
   // Form submit
-  function submitMain() {
+  function doSubmit() {
     const inputs = document.querySelectorAll('#mainForm input[required]');
     let ok = true;
     inputs.forEach(i => {
@@ -780,7 +756,7 @@
     });
     if (!ok) return;
     document.getElementById('mainForm').style.display = 'none';
-    document.getElementById('formOk').style.display = 'block';
+    document.getElementById('cfOk').style.display = 'block';
   }
 </script>
 </body>
